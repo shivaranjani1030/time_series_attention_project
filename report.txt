@@ -1,0 +1,38 @@
+Title: Advanced Time Series Forecasting with Deep Learning and Self-Attention
+
+1. Introduction
+Time series forecasting is a fundamental problem in domains such as finance, healthcare, and sensor analytics. Traditional statistical models often struggle with nonlinear patterns and long-term dependencies. This project explores the use of deep learning, specifically Long Short-Term Memory (LSTM) networks enhanced with a self-attention mechanism, to improve multivariate time series forecasting performance.
+
+2. Dataset Description
+A synthetic multivariate time series dataset was programmatically generated to simulate real-world financial and sensor data behavior. The dataset contains 1,500 observations with six correlated numerical features. Realism was introduced through linear trends, periodic seasonality, cumulative stochastic processes, and Gaussian noise injection. Feature f1 was selected as the forecasting target, while the remaining features act as explanatory variables.
+
+3. Data Preprocessing
+The dataset was standardized using z-score normalization to ensure stable neural network training. A sliding window approach was applied to transform the time series into supervised learning sequences with a window size of 30 time steps. Data splitting followed a time-series-aware strategy, using the first 80% for training and the remaining 20% for testing to avoid temporal leakage.
+
+4. Model Architecture
+The core forecasting model consists of an LSTM layer with 64 hidden units, followed by a custom self-attention mechanism. The attention layer computes weighted importance scores across time steps, allowing the model to focus on the most relevant historical information. A fully connected output layer produces the final forecast.
+
+5. Justification for Attention Mechanism
+While LSTMs mitigate the vanishing gradient problem, they still compress temporal information into a fixed-length vector. The self-attention mechanism addresses this limitation by dynamically weighting past hidden states, improving long-range dependency modeling and interpretability of the forecasting process.
+
+6. Baseline Models
+Two baseline models were implemented for comparison:
+- A traditional ARIMA (5,1,0) model applied to the target series.
+- A vanilla LSTM model without attention, using the same architecture and training configuration.
+
+7. Hyperparameter Tuning Strategy
+Key hyperparameters, including window size, learning rate, and LSTM hidden units, were tuned using rolling-window validation. The selected configuration achieved the best trade-off between convergence stability and forecast accuracy.
+
+8. Evaluation Metrics
+Model performance was evaluated using multiple metrics:
+- Root Mean Squared Error (RMSE)
+- Mean Absolute Error (MAE)
+- Mean Absolute Percentage Error (MAPE)
+- Directional Accuracy, measuring the correctness of predicted trend direction
+
+9. Results and Analysis
+The LSTM model augmented with self-attention consistently outperformed both baseline models across all evaluation metrics. The largest improvement was observed in directional accuracy, demonstrating the model’s ability to capture meaningful temporal patterns. The ARIMA model struggled with nonlinear dynamics present in the dataset.
+
+10. Conclusion
+This project demonstrates that integrating self-attention mechanisms with LSTM networks significantly enhances multivariate time series forecasting performance. The results highlight the effectiveness of attention-based deep learning models for complex, real-world time series data.
+
